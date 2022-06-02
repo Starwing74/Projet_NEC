@@ -1,0 +1,238 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!
+{% endblock %}
+
+{% block body %}
+    <style>
+        #home-header {
+            position: relative;
+        }
+        *, ::after, ::before {
+            box-sizing: border-box;
+        }
+        .home-header-background::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background-color: black;
+            opacity: 0.25;
+        }
+        *, ::after, ::before {
+            box-sizing: border-box;
+        }
+        .home-header-quote-picture {
+            position: absolute;
+            top: 142px;
+            left: calc(40/1920 * 100%);
+            right: 0;
+            bottom: 0;
+            height: calc(369/927 * 100%);
+            background-image: url(../NEW_ENERGIE_CONCEPT/public/media/Image/pages/home/Citation.png);
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: 0 center;
+            width: 927px;
+        }
+        *, ::after, ::before {
+            box-sizing: border-box;
+        }
+        .img-contain {
+            height: auto;
+            width: auto;
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+        img, svg {
+            vertical-align: middle;
+        }
+        *, ::after, ::before {
+            box-sizing: border-box;
+        }
+    </style>
+    <center>
+    <header id="home-header">
+        <!-- Background image -->
+        <div class="home-header-background"></div>
+        <!-- Citation image -->
+        <div class="home-header-quote-picture"></div>
+        <!-- News -->
+        <div id="home-header-news" style="opacity: 0; visibility: hidden;">
+            <div style="display: flow-root;">
+                <div style="float: right;">
+                    <!-- Slider main container -->
+                    <div id="home-header-slider" class="swiper-container swiper-initialized swiper-horizontal swiper-pointer-events swiper-backface-hidden">
+                        <!-- Additional required wrapper -->
+                        <div class="swiper-wrapper" id="swiper-wrapper-3102baf9c90bc78f5" aria-live="polite">
+                            <!-- Slides -->
+
+                            <div class="swiper-slide swiper-slide-active" style="width: 400px;" role="group" aria-label="1 / 1">
+                                <div class="home-header-news-card card">
+                                    <div class="card-body" style="padding: 35px 35px 22px;">
+                                        <div class="ttitle titalic text-primary tsize-xsmall">Dernière news</div>
+                                        <h3 class="ttitle th4 text-truncate" style="margin-bottom: 30px;">Titre</h3>
+                                        <div class="tsize-small line-clamp" data-limit="5" style="margin-bottom: 30px;">Intro</div>
+                                        <a class="tlink tsize-small text-primary text-uppercase" href="#!">Lire l'article</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slider-button-prev swiper-button-disabled swiper-button-lock" tabindex="-1" role="button" aria-label="Previous slide" aria-controls="swiper-wrapper-3102baf9c90bc78f5" aria-disabled="true"></div>
+                        <div class="slider-button-next swiper-button-disabled swiper-button-lock" tabindex="-1" role="button" aria-label="Next slide" aria-controls="swiper-wrapper-3102baf9c90bc78f5" aria-disabled="true"></div>
+                        <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
+                    <div class="text-center" style="margin-top: 20px;">
+                        <a href="#!" class="tlink tsize-small tfont-black titalic" style="text-shadow: 0 0 2px white;">Toutes les news</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Bottom band -->
+        <div class="home-header-bottom page-container">
+            <div class="home-header-bottom-card card flex-column align-items-center justify-content-center w-100 text-center bg-primary text-white">
+                <h1 class="home-header-bottom-title ttitle th4">NEW Énergie Concept</h1>
+                <!--p class="home-header-bottom-text th5 text-uppercase">Bureau d'études techniques spécialisé dans le contrôle<br class="d-none d-md-block"> sur site des différentes réglementations thermiques</p-->
+                <p class="home-header-bottom-text th5 text-uppercase">Bureau d'étude technique spécialiste en Ingénierie Fluides, <br class="d-none d-md-block">Audits énergétiques et Économie de la Construction.</p>
+            </div>
+        </div>
+
+    </header>
+
+    <section class="page-section">
+        <div class="page-container">
+            <div class="page-section-header text-center">
+                <h2 class="ttitle th1">Qui sommes-nous ?</h2>
+            </div>
+            <div class="page-section-block text-center">
+                <p>Nous sommes basés à Lyon et Épinal, cela nous permet de rayonner sur la grande moitié Est de la France jusqu'à Paris
+                    <br class="d-none d-md-block"><b>et de vous accompagner dans les missons&nbsp;:</b>
+                </p>
+            </div>
+            <div class="page-section-block">
+                <ul id="home-about-list" class="row list-unstyled justify-content-center gy-0 mb-0" style="--bs-gutter-x: 30px;">
+                    <li class="col-12 col-md-6 col-xl-4" style="margin-bottom: 35px;">
+                        <div class="card h-100 text-white text-center" style="background-color: #89122F">
+                            <div class="card-body">
+                                <div class="mb-4" style="height: 80px;">
+                                    <img class="img-contain" src={{ asset('media/Image/pages/about/intro/plan.svg?v=2021-12-13-10-50-24') }}>
+                                </div>
+                                <h3 class="ttitle th5">Maîtrise d'œuvre complète <br>
+                                    ou spécialisée <br>
+                                    en tant que mandataire <br>
+                                    ou co-traitant</h3>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="col-12 col-md-6 col-xl-4" style="margin-bottom: 35px;">
+                        <div class="card h-100 text-white text-center" style="background-color: #E5383B">
+                            <div class="card-body">
+                                <div class="mb-4" style="height: 80px;">
+                                    <img class="img-contain" src={{ asset('media/Image/pages/about/intro/engineering.svg?v=2021-12-13-10-50-24') }}>
+                                </div>
+                                <h3 class="ttitle th5">Ingénierie <br>
+                                    traditionnelle</h3>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="text-center">
+                <a href="./a-propos.php" class="btn btn-primary tlink tsize-small text-uppercase text-white">En savoir +</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="home-solutions" class="page-section">
+        <div class="page-container">
+            <div class="page-section-header text-center">
+                <h2 class="ttitle th1 text-center">Nos solutions</h2>
+            </div>
+            <div class="page-section-block">
+                <ul id="home-solutions-list" class="row g-0 list-unstyled justify-content-center">
+                    <li class="home-solutions-item col-12 col-md-6" style="--rel-aspect-ratio: 540/525;">
+                        <div class="home-solution">
+                            <div class="home-solution-picture-block" style="--aspect-ratio: 510/370;">
+                                <img class="home-solution-picture img-cover" src={{ asset('media/Image/pages/solutions/list/ingenierie-fluide.png?v=2021-12-13-10-50-24') }}>
+                                <div class="home-solution-picture-overlay"></div>
+                                <div class="home-solution-icons-wrapper">
+                                    <div class="home-solution-icons-container">
+                                        <img class="home-solution-icons-picture img-contain" src={{ asset('media/Image/pages/solutions/list/economie-construction.png?v=2021-12-13-10-50-24') }}>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="home-solution-card card text-white" style="background-color: #C30000;">
+                                <div class="home-solution-card-body card-body">
+                                    <h3 class="home-solution-card-title ttitle th2" style="letter-spacing: -0.35px;">Ingénierie Fluides</h3>
+                                    <div class="home-solution-card-text">Vérification des plans et des besoins d'adaptations liés à l'implantation et à la circulation des équipements techniques…</div>
+                                </div>
+                                <div class="home-solution-card-footer card-footer">
+                                    <a class="home-solution-card-footer-button text-white" href="./nos-solutions.php#ingenierie-fluide">
+                                        <i class="fas fa-plus" aria-hidden="true"></i>
+                                        <span class="sr-only"></span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="home-solutions-item col-12 col-md-6" style="--rel-aspect-ratio: 540/525;">
+                        <div class="home-solution">
+                            <div class="home-solution-picture-block" style="--aspect-ratio: 510/370;">
+                                <img class="home-solution-picture img-cover" src={{ asset('media/Image/pages/solutions/list/economie-construction.png?v=2021-12-13-10-50-24') }}>
+                                <div class="home-solution-picture-overlay"></div>
+                                <div class="home-solution-icons-wrapper">
+                                    <div class="home-solution-icons-container">
+                                        <img class="home-solution-icons-picture img-contain" src={{ asset('media/Image/pages/solutions/intro/paper-pencil.svg?v=2021-12-13-10-50-24') }}>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="home-solution-card card text-white" style="background-color: #D1183E;">
+                                <div class="home-solution-card-body card-body">
+                                    <h3 class="home-solution-card-title ttitle th2" style="letter-spacing: -0.35px;">Économie de la Construction</h3>
+                                    <div class="home-solution-card-text">Estimatif financier sommaire du projet en fonction des surfaces et principales orientations techniques…</div>
+                                </div>
+                                <div class="home-solution-card-footer card-footer">
+                                    <a class="home-solution-card-footer-button text-white" href="./nos-solutions.php#economie-construction">
+                                        <i class="fas fa-plus" aria-hidden="true"></i>
+                                        <span class="sr-only"></span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="home-solutions-item col-12 col-md-6" style="--rel-aspect-ratio: 540/525;">
+                        <div class="home-solution">
+                            <div class="home-solution-picture-block" style="--aspect-ratio: 510/370;">
+                                <img class="home-solution-picture img-cover" src={{ asset('media/Image/pages/solutions/list/audit-energetique.png?v=2021-12-13-10-50-24') }}>
+                                <div class="home-solution-picture-overlay"></div>
+                                <div class="home-solution-icons-wrapper">
+                                    <div class="home-solution-icons-container">
+                                        <img class="home-solution-icons-picture img-contain" src={{ asset('media/Image/pages/solutions/intro/magnifying-glass.svg?v=2021-12-13-10-50-24') }}>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="home-solution-card card text-white" style="background-color: #E5383B;">
+                                <div class="home-solution-card-body card-body">
+                                    <h3 class="home-solution-card-title ttitle th2" style="letter-spacing: -0.35px;">Audit énergétique</h3>
+                                    <div class="home-solution-card-text">Audit et assistance sur la gestion de la plateforme OPERAT de l'ADEME pour la gestion du dispositif ECO ENERGIE TERTIAIRE.<br>
+                                        <br>
+                                        Audit établi suivant les normes en vigueur 16247-1 et 2 ainsi que les recommandations de l'ADEME.</div>
+                                </div>
+                                <div class="home-solution-card-footer card-footer">
+                                    <a class="home-solution-card-footer-button text-white" href="./nos-solutions.php#audit-energetique">
+                                        <i class="fas fa-plus" aria-hidden="true"></i>
+                                        <span class="sr-only"></span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    </center>
+{% endblock %}
+

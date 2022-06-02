@@ -1,0 +1,308 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ProposController!{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <main>
+
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <style>
+                *,
+                *::before,
+                *::after {
+                    box-sizing: border-box;
+                }
+
+                body {
+                    margin: 0;
+                    font-family: Arial, Helvetica, sans-serif;
+                    background: #ffffff;
+                }
+
+                .timeline {
+                    position: relative;
+                    width: 100%;
+                    max-width: 1140px;
+                    margin: 0 auto;
+                    padding: 15px 0;
+                }
+
+                .timeline::after {
+                    content: '';
+                    position: absolute;
+                    width: 2px;
+                    background: #006E51;
+                    top: 0;
+                    bottom: 0;
+                    left: 50%;
+                    margin-left: -1px;
+                }
+
+                .contenue {
+                    padding: 15px 30px;
+                    position: relative;
+                    background: inherit;
+                    width: 50%;
+                }
+
+                .contenue.left {
+                    left: 0;
+                }
+
+                .contenue.right {
+                    left: 50%;
+                }
+
+                .contenue::after {
+                    content: '';
+                    position: absolute;
+                    width: 16px;
+                    height: 16px;
+                    top: calc(50% - 8px);
+                    right: -8px;
+                    background: #ffffff;
+                    border: 2px solid #006E51;
+                    border-radius: 16px;
+                    z-index: 1;
+                }
+
+                .contenue.right::after {
+                    left: -8px;
+                }
+
+                .contenue::before {
+                    content: '';
+                    position: absolute;
+                    width: 50px;
+                    height: 2px;
+                    top: calc(50% - 1px);
+                    right: 8px;
+                    background: #006E51;
+                    z-index: 1;
+                }
+
+                .contenue.right::before {
+                    left: 8px;
+                }
+
+                .contenue .date {
+                    position: absolute;
+                    text-align: center;
+                    font-size: 30px;
+                    font-weight: bold;
+                    color: #000000;
+                    text-transform: uppercase;
+                    letter-spacing: 1px;
+                    z-index: 1;
+                }
+
+                .contenue.left .date {
+                    right: -85px;
+                    top: 10%;
+                }
+
+                .contenue.right .date {
+                    left: -85px;
+                    top: 30%;
+                }
+
+                .contenue .icon {
+                    position: absolute;
+                    display: inline-block;
+                    width: 40px;
+                    height: 40px;
+                    padding: 9px 0;
+                    top: calc(50% - 20px);
+                    background: #F6D155;
+                    border: 2px solid #006E51;
+                    border-radius: 40px;
+                    text-align: center;
+                    font-size: 18px;
+                    color: #006E51;
+                    z-index: 1;
+                }
+
+                .contenue.left .icon {
+                    right: 56px;
+                }
+
+                .contenue.right .icon {
+                    left: 56px;
+                }
+
+                .contenue.right .content {
+                    padding: 30px 30px 30px 90px;
+                    border-radius: 500px 0 0 500px;
+                }
+
+                .contenue .content h2 {
+                    margin: 0 0 10px 0;
+                    font-size: 18px;
+                    font-weight: normal;
+                    color: #006E51;
+                }
+
+                .contenue .content p {
+                    margin: 1px;
+                    font-size: 16px;
+                    line-height: 22px;
+                    color: #000000;
+                    position: absolute;
+                }
+
+                .contenue .left .content p {
+                    left: 85px;
+                }
+
+                .contenue .right .content p {
+                    right: 85px;
+                }
+
+                @media (max-width: 767.98px) {
+                    .timeline::after {
+                        left: 90px;
+                    }
+
+                    .contenue {
+                        width: 100%;
+                        padding-left: 120px;
+                        padding-right: 30px;
+                    }
+
+                    .contenue.right {
+                        left: 0%;
+                    }
+
+                    .contenue.left::after,
+                    .contenue.right::after {
+                        left: 82px;
+                    }
+
+                    .contenue.left::before,
+                    .contenue.right::before {
+                        left: 100px;
+                        border-color: transparent #006E51 transparent transparent;
+                    }
+
+                    .contenue.left .date,
+                    .contenue.right .date {
+                        right: auto;
+                        left: 15px;
+                    }
+
+                    .contenue.left .icon,
+                    .contenue.right .icon {
+                        right: auto;
+                        left: 146px;
+                    }
+
+                    .contenue.left .content,
+                    .contenue.right .content {
+                        padding: 30px 30px 30px 90px;
+                        border-radius: 500px 0 0 500px;
+                    }
+                }
+
+                .page-section {
+                    background: url("https://nec-ingenierie.fr/images/pages/about/timeline-background.jpg") no-repeat center center;
+                    padding: 100px 500px;
+                }
+
+                .timeline-container {
+                    background:rgba(255,255,255,0.75);
+                }
+
+            </style>
+            <div class="py-5 text-center mt-5">
+                <h2>Checkout form</h2>
+                <p class="lead">Below is an example form built entirely with Bootstrap’s form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</p>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="card text-white bg-primary mb-3 w-100 h-100">
+                        <div class="card-body text-center">
+                            <h3 class="bi bi-aspect-ratio"></h3>
+                            <h3 class="card-title">Maîtrise d'œu888888888888888888888888888888888888888888888888888888888888888888vre complète ou spécialisée en tant que mandataire ou co-traitant</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="card text-white bg-primary mb-3 w-100 h-100">
+                        <div class="card-body text-center">
+                            <h3 class="bi bi-aspect-ratio"></h3>
+                            <h3 class="card-text">Ingénierie traditionnelle</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <section class="page-section">
+        <div class="page-container card timeline-container">
+            <div class="card-body text-center">
+                <h5 class="card-title">HISTORIQUE</h5>
+                {% set count = 0 %}
+                <div class="timeline">
+                    {% for list_chronologie in list_chronologie %}
+                        {% set count = count + 1 %}
+                        {% if count is even %}
+                            <div class="contenue left">
+                                <div class="date">{{ list_chronologie.date }}</div>
+                                <div class="content">
+                                    <p>
+                                        {{ list_chronologie.description }}
+                                    </p>
+                                </div>
+                            </div>
+                        {% elseif count is odd %}
+                            <div class="contenue right">
+                                <div class="date">{{ list_chronologie.date }}</div>
+                                <div class="content">
+                                    <p>
+                                        {{ list_chronologie.description }}
+                                    </p>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="page-container">
+        <div class="page-section-header text-center">
+            <h2 class="ttitle th1">Rejoignez-nous</h2>
+        </div>
+        <div class="page-section-block text-center">
+            <p>Vous souhaitez donner un nouvel élan à votre carrière et rejoindre une entreprise à taille humaine qui place l'esprit d'équipe au cœur de ses préoccupations ? Consultez nos offres ou faites nous parvenir une candidature spontanée.
+                <br>
+                <br>Dans la mesure du possible nous privilégions la mobilité interne. Cependant nous sommes en croissance constante et avons toujours besoin de nouveaux talents pour venir renforcer les équipes en place. À bientôt !
+
+            </p>
+        </div>
+        <div class="text-center">
+            <a href="./rejoignez-nous.php" class="btn btn-primary tlink text-uppercase text-white px-4">Consultez les annonces</a>
+        </div>
+    </div>
+
+    <footer class="my-5 pt-5 text-muted text-center text-small">
+        <p class="mb-1">© 2017–2020 Company Name</p>
+        <ul class="list-inline">
+            <li class="list-inline-item">
+                <a href="#">Privacy</a>
+            </li>
+            <li class="list-inline-item">
+                <a href="#">Terms</a>
+            </li>
+            <li class="list-inline-item">
+                <a href="#">Support</a>
+            </li>
+        </ul>
+    </footer>
+
+{% endblock %}

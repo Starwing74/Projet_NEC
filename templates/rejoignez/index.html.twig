@@ -1,0 +1,146 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello RejoignezController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    .input-group {
+        position: relative;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: stretch;
+        width: 100%;
+    }
+    .custom-file-input:lang(fr) .custom-file-label::after {
+        content: "Choisir";
+        color: #B0413E;
+    }
+    input#test-file{
+        display: none;
+    }
+    input#test-file + label{
+        background-color: #B0413E;
+        padding: 10px;
+        color: #fff;
+        border: 2px solid #9EC3FF;
+        border-radius: 9px;
+    }
+    @media (min-width: 992px)
+        .page-section {
+            padding: 110px 0;
+        }
+        .page-section {
+            padding: 60px 0;
+        }
+        @media (min-width: 992px)
+            .th1 {
+                font-size: 50px;
+                font-size: 3.125em;
+                font-size: calc(50em / 18);
+            }
+            .th1 {
+                font-size: 2.5em;
+            }
+            h1, .h1, h2, .h2, h3, .h3, h4, .h4, .ttitle {
+                font-family: 'Roboto Condensed', sans-serif;
+                font-weight: 700;
+                text-transform: uppercase;
+                margin: 0;
+                margin-bottom: 0px;
+            }
+            .mb-80 {
+                margin-top: 50px;
+                margin-bottom: 10px !important;
+            }
+</style>
+
+<div class="container">
+    <section class="page-section">
+        <center>
+        <div class="page-container">
+            <div class="page-section-header text-center mb-80">
+                <!--h1 class="ttitle th1 mb-80">Offres d'emploi</h1-->
+                <br>
+                <h1 class="ttitle th1 mb-80 test">Postes à pourvoir</h1>
+                <p>La liste suivante affiche nos postes actuellement requis. Cette liste sera mise à jour régulièrement.</p>
+            </div>
+            <p class="text-muted text-center">Aucun poste n'est disponible pour l'instant.</p>
+        </div>
+        </center>
+    </section>
+    <section class="page-section">
+        <center>
+        <div id="join-us-title" class="page-container page-section-block text-center mb-80">
+            <h1 class="ttitle th1 mb-80">Rejoignez-nous</h1>
+            <p>Vous souhaitez donner un nouvel élan à votre carrière et rejoindre une entreprise à taille humaine qui place l'esprit d'équipe au cœur de ses préoccupations ?
+                <br>Consultez nos offres ou faites-nous parvenir une candidature spontanée.</p>
+        </div>
+        </center>
+    </section>
+    <section class="page-section">
+        <div class="page-form-card card bg-secondary text-white">
+            <div class="card-body" style="padding: 80px 40px;">
+                {{ form_start(form) }}
+                <br>
+                <div class="w-100">
+                    <div class="row gx-3 gy-4 mb-60">
+                        <div class="col-12 col-lg-6 align-self-end" style="margin-top: 10px; margin-bottom: 10px">
+                            {{ form_widget(form.Prenom) }}
+                        </div>
+                        <div class="col-12 col-lg-6" style="margin-top: 10px; margin-bottom: 10px">
+                            {{ form_widget(form.Nom) }}
+                        </div>
+                        <div class="col-12 col-lg-6" style="margin-top: 10px; margin-bottom: 10px">
+                            {{ form_widget(form.Email) }}
+                        </div>
+                        <div class="col-12 col-lg-6 align-self-end" style="margin-top: 10px; margin-bottom: 10px">
+                            {{ form_widget(form.Telephone) }}
+                        </div>
+                        <div class="col-12" style="margin-top: 10px; margin-bottom: 10px">
+                            {{ form_widget(form.Sujet) }}
+                        </div>
+                        <div class="col-12" style="margin-top: 10px; margin-bottom: 10px">
+                            <label for="join-us-resume2" class="input-group">
+                                <input type="text" class="form-control" placeholder="Ajouter votre CV*"
+                                       aria-label="Ajouter votre CV*" style="pointer-events: none; user-select: none;">
+                                <span class="input-group-text bg-primary text-white text-uppercase" style="pointer-events: none; user-select: none;">Parcourir…</span>
+                            </label>
+                            {{ form_widget(form.File, { 'id': 'join-us-resume2'}) }}
+                            {% if form_errors(form.File) %}
+                                <p>testing</p>
+                            {% endif %}
+                            <div class="form-text text-white tsize-small mt-2">Format image ou PDF acceptés. Poids maximum : 1&nbsp;Mo.</div>
+                        </div>
+                        <div class="col-12" style="margin-top: 10px; margin-bottom: 10px">
+                            {{ form_widget(form.VotreMessage) }}
+                        </div>
+                        <div class="col-12" style="margin-top: 10px; margin-bottom: 10px">
+                            {{ form_row(form.Captcha) }}
+                            {% if form_errors(form.Captcha) %}
+                                <script>
+                                    alert("Vous n'avez pas cliquer sur 'je ne suis pas un robot'");
+                                </script>
+                            {% endif %}
+                        </div>
+                        <div class="col-12">
+                            *Champs obligatoires
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <input type="submit" value="ENVOYER" />
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </section>
+
+    {% if Nom %}
+        <p>{{ Nom }}</p>
+        <p>{{ Mail }}</p>
+        <p>{{ File }}</p>
+    {% endif %}
+</div>
+{% endblock %}
