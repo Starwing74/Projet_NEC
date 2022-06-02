@@ -1,19 +1,405 @@
 <!DOCTYPE html>
 <html>
-    <head>
+
+        <style>
+            #page-navbar {
+                font-family: "Roboto", sans-serif;
+                font-weight: 500;
+                background-color: white;
+                box-shadow: 0px 6px 6px rgba(0, 0, 0, 0.161);
+            }
+            .fixed-top {
+                position: fixed;
+                top: 0;
+                right: 0;
+                left: 0;
+                z-index: 1030;
+            }
+            @media (min-width: 992px)
+                .navbar-expand-lg {
+                    flex-wrap: nowrap;
+                    justify-content: flex-start;
+                }
+                .navbar {
+                    position: relative;
+                    display: flex;
+                    flex-wrap: wrap;
+                    align-items: center;
+                    justify-content: space-between;
+                    padding-top: .5rem;
+                    padding-bottom: .5rem;
+                }
+                *, ::after, ::before {
+                    box-sizing: border-box;
+                }
+            .test:hover {
+                color: grey;
+            }
+            #page-nav .nav-link {
+                text-transform: uppercase;
+                line-height: 3;
+                padding: 0;
+                color: #425058;
+            }
+            #page-nav .nav-item:not(:last-child) {
+                margin-right: 24px;
+            }
+            #page-nav .nav-item {
+                border-bottom: 4px solid rgba(255, 255, 255, 0);
+            }
+            *, ::after, ::before {
+                box-sizing: border-box;
+            }
+            .tsize-small, .tsize-small * {
+                font-size: 0.875rem !important;
+            }
+            *, ::after, ::before {
+                box-sizing: border-box;
+            }
+        </style>
+
+        <script src='https://www.google.com/recaptcha/api.js'></script>
+
+        <script>
+            window.onload = function() {
+                var recaptcha = document.forms["Seu-Form"]["g-recaptcha-response"];
+                recaptcha.required = true;
+                recaptcha.oninvalid = function(e) {
+                    // fazer algo, no caso to dando um alert
+                    alert("Por favor complete o captchaba");
+                }
+            }
+        </script>
+
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
-        {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-        {% endblock %}
+        {% block stylesheets %}{{ encore_entry_link_tags('app') }}{% endblock %}
+        <nav id="page-navbar" class="navbar fixed-top navbar-expand-lg navbar-light bg-white">
+            <div class="container-md">
+                <a class="navbar-brand">
+                    <img width="215" height="84" src={{ asset('media/Image/logos/Logo_NEC_Concept.png') }}>
+                </a>
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item active">
+                            <a class="nav-link active" href="{{ path('app_accueil') }}">
+                                {% if test == 1 %}
+                                    <span class="bg-danger text-white">accueil</span>
+                                {% else %}
+                                    <span class="test">accueil</span>
+                                {% endif %}
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="{{ path('app_propos') }}">
+                                {% if test == 2 %}
+                                    <span class="bg-danger text-white">à propos</span>
+                                {% else %}
+                                    <span class="test">à propos</span>
+                                {% endif %}
+                            </a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link active" href="{{ path('app_news') }}">
+                                {% if test == 3 %}
+                                    <span class="bg-danger text-white">news</span>
+                                {% else %}
+                                    <span class="test">news</span>
+                                {% endif %}
+                            </a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link active" href="{{ path('app_solutions') }}">
+                                {% if test == 4 %}
+                                    <span class="bg-danger text-white">nos solutions</span>
+                                {% else %}
+                                    <span class="test">nos solutions</span>
+                                {% endif %}
+                            </a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link active" href="{{ path('contact') }}">
+                                {% if test == 5 %}
+                                    <span class="bg-danger text-white">contact</span>
+                                {% else %}
+                                    <span class="test">contact</span>
+                                {% endif %}
+                            </a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link active" href="{{ path('app_rejoignez') }}">
+                                {% if test == 6 %}
+                                    <span class="bg-danger text-white">rejoignez-nous</span>
+                                {% else %}
+                                    <span class="test">rejoignez-nous</span>
+                                {% endif %}
+                            </a>
+                        </li>
 
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-        {% endblock %}
-    </head>
+                        {% if app.user %}
+                            <li class="nav-item active">
+                                <a class="nav-link active" href="{{ path('app_data_base') }}">
+                                    {% if test == 7 %}
+                                        <span class="bg-danger text-white">Database</span>
+                                    {% else %}
+                                        <span class="test">Database</span>
+                                    {% endif %}
+                                </a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
     <body>
         {% block body %}{% endblock %}
+        {% block javascripts %}{{ encore_entry_script_tags('app') }}{% endblock %}
     </body>
+    <!-- INSCRIPTION -->
+    <style>
+        @media(max-width: 767.98px) {
+            #aside-newsletter input[type="text"] {
+                margin-bottom: 0.5rem;
+            }
+            #aside-newsletter input[type="text"],
+            #aside-newsletter-submit {
+                width: 100%;
+                border-radius: 0.25rem;
+            }
+        }
+        .tsize-small, .tsize-small * {
+            font-size: 0.875rem !important;
+        }
+        h1, .h1, h2, .h2, h3, .h3, h4, .h4, .ttitle {
+            font-family: 'Roboto Condensed', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin: 0;
+            margin-bottom: 0px;
+        }
+        @media (min-width: 992px)
+            .mb-lg-3 {
+                margin-bottom: 1rem !important;
+            }
+            .mb-2 {
+                margin-bottom: .5rem !important;
+            }
+            *, ::after, ::before {
+                box-sizing: border-box;
+            }
+            .mb-0 {
+                margin-bottom: 0 !important;
+            }
+            .list-unstyled {
+                padding-left: 0;
+                list-style: none;
+            }
+            dl, ol, ul {
+                margin-top: 0;
+                margin-bottom: 1rem;
+            }
+            ol, ul {
+                padding-left: 2rem;
+            }
+            *, ::after, ::before {
+                box-sizing: border-box;
+            }
+            *, ::after, ::before {
+                box-sizing: border-box;
+            }
+            .tlink {
+                color: inherit;
+                transition: box-shadow 0.3s var(--standard-easing);
+            }
+            .tfont-regular {
+                font-weight: 400;
+            }
+            .tsize-xsmall, .tsize-xsmall * {
+                font-size: 12px;
+                font-size: 0.75rem !important;
+            }
+            .h-100 {
+                height: 100% !important;
+            }
+            .w-100 {
+                width: 100% !important;
+            }
+            a, button, .btn {
+                font-size: 1.125rem;
+                font-weight: 500;
+                text-decoration: none;
+            }
+            a {
+                color: #0d6efd;
+                text-decoration: underline;
+            }
+            *, ::after, ::before {
+                box-sizing: border-box;
+            }
+            .img-contain {
+                height: auto;
+                width: auto;
+                max-width: 100%;
+                max-height: 100%;
+                object-fit: contain;
+            }
+            img, svg {
+                vertical-align: middle;
+            }
+            *, ::after, ::before {
+                box-sizing: border-box;
+            }
+            .page-footer {
+                padding: 60px 15px 10px;
+            }
+            .g-5, .gx-5 {
+                --bs-gutter-x: 3rem;
+            }
+            .g-4, .gy-4 {
+                --bs-gutter-y: 1.5rem;
+            }
+            .row {
+                --bs-gutter-x: 1.5rem;
+                --bs-gutter-y: 0;
+                display: flex;
+                flex-wrap: wrap;
+                margin-top: calc(var(--bs-gutter-y) * -1);
+                margin-right: calc(var(--bs-gutter-x)/ -2);
+                margin-left: calc(var(--bs-gutter-x)/ -2);
+            }
+            *, ::after, ::before {
+                box-sizing: border-box;
+            }
+            @media (min-width: 992px)
+                .page-section {
+                    padding: 110px 0;
+                    padding-top: 110px;
+                    padding-bottom: 110px;
+                }
+                .bg-quinary {
+                    background-color: #B0413E !important;
+                }
+                .text-white {
+                    color: white !important;
+                }
+                .text-white {
+                    color: #fff !important;
+                }
+                .py-4 {
+                    padding-top: 1.5rem !important;
+                    padding-bottom: 1.5rem !important;
+                }
+        .page-container {
+            max-width: 1000px;
+        }
+    </style>
+    <center>
+    <aside id="aside-newsletter" class="page-section bg-quinary text-white py-4">
+        <div class="page-container">
+            <form id="newsletter-register" action="./controllers/newsletter.php" method="post" class="row g-0">
+                <div class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-4 text-center text-lg-start">
+                    <div class="ttitle th4">Inscrivez-vous à notre newsletter</div>
+                    <p class="tsize-xsmall">et soyez le premier à être informé de nos dernières actus, réalisations, etc...</p>
+                </div>
+                <div class="col-12 col-lg d-flex align-items-center">
+                    <div class="input-group h-100">
+                        <input type="text" name="email" class="form-control flex-column flex-md-row" placeholder="Entrez votre email"
+                               aria-label="Entrer votre email" aria-describedby="aside-newsletter-submit">
+                        <button type="submit" class="btn btn-primary btn-lg tlink tfont-bold text-uppercase px-5" id="aside-newsletter-submit">S'inscrire</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </aside>
+    </center>
+    <!-- PIED DE PAGE -->
+    <center>
+    <footer class="page-footer bg-gray">
+        <div class="page-container">
+            <div class="row gx-5 gy-4">
+                <!-- Description -->
+                <div class="col-12 col-lg-4 text-center text-lg-start">
+                    <div style="height: 64px;">
+                        <img class="img-contain" id="LOGO_Concept" src={{ asset('media/Image/logos/Logo_NEC_Concept.png') }} alt="Logo NEW Énergie Concept (noir)">
+                    </div>
+                    <p class="tsize-xsmall tfont-medium mb-3" style="opacity: 0.65;">New Energie Concept est spécialisé en Ingénierie Fluides, Audit énergétique et Économie de la Construction.</p>
+                    <div class="row align-items-end justify-content-around">
+                        <div class="col-6">
+                            <img class="img-contain" src={{ asset('media/Image/logos/NEC_OPQIBI.jpg') }} alt="Qualification OPQIBI 18 12 3727" style="max-width: 150px;">
+                        </div>
+                        <div class="col-6">
+                            <img class="img-contain" src={{ asset('media/Image/logos/NEC_RGE_OPQIBI.jpg') }} alt="Qualification OPQIBI RGE" style="max-width: 150px;">
+                        </div>
+                    </div>
+                </div>
+                <!-- Liens utiles -->
+                <div class="col-6 col-lg-2 text-center text-lg-start">
+                    <div class="ttitle tsize-small mb-2 mb-lg-3">Liens utiles</div>
+                    <ul class="list-unstyled mb-0">
+                        <li class="d-flex">
+                            <a class="tlink tsize-xsmall tfont-regular h-100 w-100" href="{{ path('app_accueil') }}">Accueil</a>
+                        </li>
+                        <li>
+                            <a class="tlink tsize-xsmall tfont-regular h-100 w-100" href="{{ path('app_propos') }}">À propos</a>
+                        </li>
+                        <li>
+                            <a class="tlink tsize-xsmall tfont-regular h-100 w-100" href="{{ path('app_news') }}">News</a>
+                        </li>
+                        <li>
+                            <a class="tlink tsize-xsmall tfont-regular h-100 w-100" href="{{ path('app_solutions') }}">Nos solutions</a>
+                        </li>
+                        <li>
+                            <a class="tlink tsize-xsmall tfont-regular h-100 w-100" href="{{ path('contact') }}">Contact</a>
+                        </li>
+                        <li>
+                            <a class="tlink tsize-xsmall tfont-regular h-100 w-100" href="{{ path('app_rejoignez') }}">Rejoignez-nous</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Siège social -->
+                <div class="col-6 col-lg-3 text-center text-lg-start">
+                    <div class="ttitle tsize-small mb-2 mb-lg-3">Siège social</div>
+                    <ul class="list-unstyled mb-0 tsize-xsmall">
+                        <li class="d-flex">
+                            <div style="width: 1.5rem">
+                                <i class="bi bi-geo-alt-fill tsize-small"></i>
+                            </div>
+                            <p>1 rue Saint-Nicolas<br>
+                                88000 EPINAL</p>
+                        </li>
+                        <li class="d-flex">
+                            <div style="width: 1.5rem">
+                                <i class="bi bi-telephone-fill tsize-small"></i>
+                            </div>
+                            <p>Tél. : 09 72 601 901</p>
+                        </li>
+                        <li class="d-flex">
+                            <div style="width: 1.5rem">
+                                <i class="bi bi-envelope-fill tsize-small"></i>
+                            </div>
+                            <p>administratif@nec-ingenierie.fr</p>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Contact -->
+                <div class="col-12 col-lg-3 text-center text-lg-start">
+                    <div class="ttitle tsize-small mb-2 mb-lg-3">Contact</div>
+                    <p class="tsize-xsmall mb-2">Besoin de renseignements, d'un devis ?</p>
+                    <a href="contact.php" class="btn btn-primary btn-xl text-uppercase px-4">Nous contacter</a>
+                </div>
+                <!-- Mentions légales -->
+                <div class="col-6">
+                    <a href="#!" class="tlink tsize-xsmall tfont-regular" data-bs-toggle="modal" data-bs-target="#modal-disclaimer">Mentions légales •&nbsp;©NEW Énergie Concept</a>
+                </div>
+                <!-- Autres mentions
+                <div class="col-6 text-end">
+                    <p class="tsize-xsmall">Design By Gaëlle Dumay - 2020</p>
+                </div> -->
+            </div>
+        </div>
+    </footer>
+    </center>
 </html>
